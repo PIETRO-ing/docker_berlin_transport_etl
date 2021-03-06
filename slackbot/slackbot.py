@@ -1,3 +1,4 @@
+import os
 import time
 import requests
 import logging
@@ -7,7 +8,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 from pandas.io.json import json_normalize
 
-webhook_url = "https://hooks.slack.com/services/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"
+WEEBHOOK_URL = os.getenv('WEEBHOOK_URL')
 
 #joke = pyjokes.get_joke()
 
@@ -35,6 +36,6 @@ while True:
     #data = dep.to_json()
     #logging.critical(data)
     data = {'text': data1}
-    requests.post(url=webhook_url, json=data)
+    requests.post(url=WEEBHOOK_URL, json=data)
     logging.critical(data)
     time.sleep(80)
