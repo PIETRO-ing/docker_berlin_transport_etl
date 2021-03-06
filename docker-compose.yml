@@ -1,0 +1,56 @@
+version: '3'
+
+services:
+
+    # 1. container
+    berlin_transport:
+      container_name: berlin_transport
+      build: berlin_transport/
+      volumes:
+      - ./berlin_transport/:/app
+
+      depends_on: # tells compose to start the service mongo before the current service
+      - mongodb
+
+    # 2. container
+    mongodb:
+      container_name: mongodb
+      image: mongo
+      ports:
+      - 27018:27017 # local_machine: inside_container
+    
+    # 3. container
+    etl_job:
+      container_name: etl_job
+      build: etl_job/
+      volumes:
+      - ./etl_job/:/app
+      depends_on: 
+      #- mongodb
+      - postgresdb
+
+
+    # 4. container
+    postgresdb: 
+      container_name: postgresdb
+      image: postgres
+      ports:
+      - 5555:5432
+      environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=departuresPG
+      - POSTGRES_PASSWORD=postgres
+
+    # 5. container
+    slackbot:
+      container_name: slackbot
+      build: slackbot/
+      depends_on: 
+      - postgresdb  
+      volumes: 
+      - ./slackbot/:/app
+
+
+
+
+
