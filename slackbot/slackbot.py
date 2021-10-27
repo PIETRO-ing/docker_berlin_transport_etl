@@ -8,7 +8,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 from pandas.io.json import json_normalize
 
-WEEBHOOK_URL = os.getenv('WEEBHOOK_URL')
+WEEBHOOK_URL = os.getenv('weebhook_url_slack')
 
 #joke = pyjokes.get_joke()
 
