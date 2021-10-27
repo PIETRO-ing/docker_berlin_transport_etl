@@ -1,29 +1,3 @@
-# 1. extract data from MongoDB
-# - in which frequency do we extract data from the MongoDB?
-# - when do we extract the data?
-# - are we extracting the whole data or a subset of the data?
-# - in which order are we extracting data?
-# - how do we handle error?
-# - what information do we log?
-# - extract all of the data or just new data? - full vs. incremental load 
-
-
-
-# 2. apply some sentiment analysis (Transform)
-# - what format is the data in?
-# - what format should it be transformed to?
-# - what calculations/aggregations do i want to perform?
-# - error handling
-# - logging
-
-
-# 3. load it to Postgres
-# - scheduling
-# - error handling
-# - logging
-
-# --------------------------------------
-
 import time
 import pymongo
 import logging
