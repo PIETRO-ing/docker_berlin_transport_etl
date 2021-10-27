@@ -1,11 +1,16 @@
 # docker_berlin_transport_etl
-real time delay departures from U Bahn Alexanderplatz.
+
+![](./Images/docker.png)
+
+real time delay departures from S+U Alexanderplatz.
 
 The workflow using Docker Compose:
 
--Scraping the Berlin Transportaion API (https://v5.vbb.transport.rest/getting-started.html) and retrieving all the real time departures from U Bahn Alexanderplatz;
-
--Storing the information to MongoDB database;
-
--Building an ETL job that extract data from MongoDB, store in Postgres database, using quiery to extract all the delay departures taking place at U Bahn Alexanderplatz and send to SlackBot app to see the information that is constantly updated
-
+Implementation of a dockerized data pipeline with the following workflow:
+Collect departure information from BVG Berlin & Brandenburg rest API (https://v5.vbb.transport.rest/getting-started.html) using Requests module.
+Store the retrieved information in MongoDB.
+Build an ETL job to:
+    - extract the departures from MongoDB 
+    - transfer the info to Postgres database
+    - make constant queries to keep the delay information up to date
+    - post via a bot
